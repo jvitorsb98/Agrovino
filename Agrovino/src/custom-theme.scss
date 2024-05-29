@@ -12,19 +12,19 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$suinocultura-primary: mat.define-palette(mat.$indigo-palette);
-$suinocultura-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$agrovino-primary: mat.define-palette(mat.$indigo-palette);
+$agrovino-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
-$suinocultura-warn: mat.define-palette(mat.$red-palette);
+$agrovino-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$suinocultura-theme: mat.define-light-theme((
+$agrovino-theme: mat.define-light-theme((
   color: (
-    primary: $suinocultura-primary,
-    accent: $suinocultura-accent,
-    warn: $suinocultura-warn,
+    primary: $agrovino-primary,
+    accent: $agrovino-accent,
+    warn: $agrovino-warn,
   ),
   typography: mat.define-typography-config(),
   density: 0
@@ -33,5 +33,5 @@ $suinocultura-theme: mat.define-light-theme((
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include mat.all-component-themes($suinocultura-theme);
+@include mat.all-component-themes($agrovino-theme);
 

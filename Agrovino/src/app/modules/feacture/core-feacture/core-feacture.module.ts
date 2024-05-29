@@ -11,15 +11,15 @@ import { SharedModuleModule } from '../../shared/shared-module/shared-module.mod
 import { CoreModule } from '../../core/core-module/core-module.module';
 import { DatabaseService } from '../../shared/services/database.service';
 import { CadastrarPesoComponent } from '../cadastrar-peso/cadastrar-peso.component';
-import { CadastroSuinoComponent } from '../cadastro-suino/cadastro-suino.component';
+import { CadastroBovinoComponent } from '../cadastro-bovino/cadastro-bovino.component';
 import { EditarPesoComponent } from '../editar-peso/editar-peso.component';
-import { EditarSuinoComponent } from '../editar-suino/editar-suino.component';
-import { PesagemSuinosComponent } from '../pesagem-suinos/pesagem-suinos.component';
+import { EditarBovinoComponent } from '../editar-bovino/editar-bovino.component';
+import { PesagemBovinosComponent } from '../pesagem-bovinos/pesagem-bovinos.component';
 import { CadastrarSessaoComponent } from '../sessao/cadastrar-sessao/cadastrar-sessao.component';
 import { CadastrarAtividadeComponent } from '../sessao/cadastrar-atividade/cadastrar-atividade.component';
 import { FinalizarSecaoComponent } from '../sessao/finalizar-secao/finalizar-secao.component';
 import { ListarSecoesComponent } from '../sessao/listar-secoes/listar-secoes.component';
-import { ListagemSuinosComponent } from '../listagem-suinos/listagem-suinos.component';
+import { ListagemBovinosComponent } from '../listagem-bovinos/listagem-bovinos.component';
 import { GraficoAtividadeComponent } from '../grafico-atividade/grafico-atividade.component';
 import { HistoricoComponent } from '../historico/historico.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -28,15 +28,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     CadastrarPesoComponent,
-    CadastroSuinoComponent,
+    CadastroBovinoComponent,
     EditarPesoComponent,
-    EditarSuinoComponent,
-    PesagemSuinosComponent,
+    EditarBovinoComponent,
+    PesagemBovinosComponent,
     CadastrarSessaoComponent,
     CadastrarAtividadeComponent,
     FinalizarSecaoComponent,
     ListarSecoesComponent,
-    ListagemSuinosComponent,
+    ListagemBovinosComponent,
     GraficoAtividadeComponent,
     HistoricoComponent
     
@@ -58,15 +58,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   providers: [DatabaseService],
   exports: [
     CadastrarPesoComponent,
-    CadastroSuinoComponent,
+    CadastroBovinoComponent,
     EditarPesoComponent,
-    EditarSuinoComponent,
-    PesagemSuinosComponent,
+    EditarBovinoComponent,
+    PesagemBovinosComponent,
     CadastrarSessaoComponent,
     CadastrarAtividadeComponent,
     FinalizarSecaoComponent,
     ListarSecoesComponent,
-    ListagemSuinosComponent,
+    ListagemBovinosComponent,
     GraficoAtividadeComponent,
     HistoricoComponent
   ]

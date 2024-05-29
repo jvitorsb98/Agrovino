@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IdadePipe } from '../pipes/idade.pipe';
 import { HttpClient } from '@angular/common/http';
 import { DatabaseService } from '../services/database.service';
-import { SuinosService } from '../services/suinos.service';
+import { BovinosService } from '../services/bovinos.service';
 import { AuthService } from '../services/auth.service';
 
 
@@ -17,7 +17,7 @@ import { AuthService } from '../services/auth.service';
   providers: [
     HttpClient,
     DatabaseService,
-    SuinosService,
+    BovinosService,
     AuthService
   ],
   exports: [

@@ -3,7 +3,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { DatabaseService } from '../../shared/services/database.service';
-import { Suino } from '../../shared/model/suino';
+import { Bovino } from '../../shared/model/bovino';
 
 
 
@@ -13,9 +13,9 @@ import { Suino } from '../../shared/model/suino';
   styleUrl: './cadastrar-peso.component.css',
 })
 export class CadastrarPesoComponent {
-  selectedItems: Suino[] = [];
+  selectedItems: Bovino[] = [];
   dropdownSettings: IDropdownSettings = {};
-  suinos: Suino[] = [];
+  bovinos: Bovino[] = [];
   formCadastro: FormGroup;
   campoBloqueado: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   campoBloqueado$: boolean = true;
@@ -59,8 +59,8 @@ export class CadastrarPesoComponent {
       ]),
     });
 
-    this.dados.getSuinos().subscribe((suinos: Suino[]) => {
-      this.suinos = Object.values(suinos); // Transforma o objeto em um array
+    this.dados.getBovinos().subscribe((bovinos: Bovino[]) => {
+      this.bovinos = Object.values(bovinos); // Transforma o objeto em um array
 
     });
   }
@@ -85,10 +85,10 @@ export class CadastrarPesoComponent {
     });
   }
   onItemSelect(item: any) {
-    this.suinos.forEach((suino) => {
-      if (suino.brinco === item.brinco) {
+    this.bovinos.forEach((bovino) => {
+      if (bovino.brinco === item.brinco) {
         this.formCadastro.get('brinco')?.setValue(item.brinco);
-        this.selectedItems.push(suino);
+        this.selectedItems.push(bovino);
         this.campoBloqueado.next(false);
       }
     });
@@ -105,23 +105,23 @@ export class CadastrarPesoComponent {
       const peso = this.formCadastro.get('peso')?.value;
       const dt_pesagem = this.formCadastro.get('dt_pesagem')?.value;
   
-      const suinoAtualizado = this.suinos.find(suino => suino.brinco === brincoSelecionado);
+      const bovinoAtualizado = this.bovinos.find(bovino => bovino.brinco === brincoSelecionado);
   
-      if (suinoAtualizado) {
+      if (bovinoAtualizado) {
         // Verifica se a propriedade 'pesos' está definida
-        if (!suinoAtualizado.pesos) {
-          suinoAtualizado.pesos = [];
+        if (!bovinoAtualizado.pesos) {
+          bovinoAtualizado.pesos = [];
         }
   
         // Verifica se já existe um peso cadastrado na mesma data
-        const pesoExistente = suinoAtualizado.pesos.find((item: any) => item.dt_pesagem === dt_pesagem);
+        const pesoExistente = bovinoAtualizado.pesos.find((item: any) => item.dt_pesagem === dt_pesagem);
         if (pesoExistente) {
           alert('Já existe um peso cadastrado para esta data!');
           return;
         }
   
-        suinoAtualizado.pesos.push({ peso, dt_pesagem });
-        this.dados.atualizeSuino(suinoAtualizado.brinco!, suinoAtualizado).subscribe(() => {
+        bovinoAtualizado.pesos.push({ peso, dt_pesagem });
+        this.dados.atualizeBovino(bovinoAtualizado.brinco!, bovinoAtualizado).subscribe(() => {
           this.formCadastro.reset();
           alert('Pesagem cadastrada!');
         });

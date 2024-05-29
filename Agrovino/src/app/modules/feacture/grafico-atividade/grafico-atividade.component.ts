@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
-import { Suino } from '../../shared/model/suino';
+import { Bovino } from '../../shared/model/bovino';
 
 @Component({
   selector: 'app-grafico-atividade',
@@ -12,7 +12,7 @@ import { Suino } from '../../shared/model/suino';
 export class GraficoAtividadeComponent implements OnInit {
   @ViewChild("meuCanvas") elemento!: ElementRef;
 
-  @Input() selectedSuino: Suino | undefined;
+  @Input() selectedBovino: Bovino | undefined;
   @Input() sessoes: any[] = [];
   @Input() atividadesBanco: { [key: string]: { descricao: string, id: string } } = {};
 
@@ -27,7 +27,7 @@ export class GraficoAtividadeComponent implements OnInit {
 
   processarDados() {
     this.sessoes.forEach((sessao) => {
-      if (sessao.suinos.includes(this.selectedSuino?.brinco)) {
+      if (sessao.bovinos.includes(this.selectedBovino?.brinco)) {
         sessao.atividades.forEach((atividadeId: string) => {
           const atividade = this.atividadesBanco[atividadeId];
           if (atividade) {
@@ -54,17 +54,17 @@ export class GraficoAtividadeComponent implements OnInit {
     this.delay(1000).then(() => {
       Chart.register(...registerables);
 
-      const labelsSuino = this.atividades.map(item => item.descricao);
-      const dataSuino = this.atividades.map(item => this.contagemAtividades[item.id]);
+      const labelsBovino = this.atividades.map(item => item.descricao);
+      const dataBovino = this.atividades.map(item => this.contagemAtividades[item.id]);
 
       this.chart = new Chart(this.elemento.nativeElement, {
         type: 'bar',
         data: {
-          labels: labelsSuino,
+          labels: labelsBovino,
           datasets: [
             {
               label: "Qtde de Aplicações",
-              data: dataSuino,
+              data: dataBovino,
               backgroundColor: 'rgba(75, 192, 192, 0.2)',
               borderColor: 'rgba(75, 192, 192, 1)',
               borderWidth: 1,

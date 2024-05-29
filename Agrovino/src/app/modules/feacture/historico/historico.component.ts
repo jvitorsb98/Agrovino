@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from '../../shared/services/database.service';
 import { ActivatedRoute } from '@angular/router';
-import { Suino } from '../../shared/model/suino';
+import { Bovino } from '../../shared/model/bovino';
 
 interface HistoricoItem {
   data: Date;
@@ -15,7 +15,7 @@ interface HistoricoItem {
   styleUrls: ['./historico.component.css']
 })
 export class HistoricoComponent implements OnInit {
-  suino: Suino = {} as Suino;
+  bovino: Bovino = {} as Bovino;
   id = '';
   mostrarGraficoPeso = false;
   mostrarGraficoAtividade = false;
@@ -30,16 +30,16 @@ export class HistoricoComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id') || '';
 
-    this.dataBase.getSuinoPorBrinco(this.id).subscribe((response) => {
+    this.dataBase.getBovinoPorBrinco(this.id).subscribe((response) => {
       if (response) {
-        this.suino = response;
-        this.suino.brinco = this.id;
+        this.bovino = response;
+        this.bovino.brinco = this.id;
       } else {
         console.log("Suíno não encontrado");
       }
     });
 
-    this.dataBase.getHistoricoSuino(this.id).subscribe((response: HistoricoItem[]) => {
+    this.dataBase.getHistoricoBovino(this.id).subscribe((response: HistoricoItem[]) => {
       this.historico = response;
     });
   }

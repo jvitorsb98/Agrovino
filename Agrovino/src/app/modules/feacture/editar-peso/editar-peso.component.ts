@@ -17,7 +17,7 @@ export class EditarPesoComponent {
     private databaseService: DatabaseService // Injete o DatabaseService aqui
   ) {
     this.edicaoPesoForm = new FormGroup({
-      novoPeso: new FormControl(data.suino.pesos.find((peso: any) => peso.dt_pesagem === data.dataPesagem)?.peso, [Validators.required, Validators.min(0)]),
+      novoPeso: new FormControl(data.bovino.pesos.find((peso: any) => peso.dt_pesagem === data.dataPesagem)?.peso, [Validators.required, Validators.min(0)]),
       novaData: new FormControl(data.dataPesagem, [Validators.required])
     });
   }
@@ -26,8 +26,8 @@ export class EditarPesoComponent {
     if (this.edicaoPesoForm.valid) {
       const novoPeso = this.edicaoPesoForm.get('novoPeso')!.value;
       const novaData = this.edicaoPesoForm.get('novaData')!.value;
-      const suino = this.data.suino;
-      const pesosAtualizados = suino.pesos.map((peso: any) => {
+      const bovino = this.data.bovino;
+      const pesosAtualizados = bovino.pesos.map((peso: any) => {
         if (peso.dt_pesagem === novaData) {
           return { ...peso, peso: novoPeso };
         } else {
@@ -35,7 +35,7 @@ export class EditarPesoComponent {
         }
       });
 
-      this.dialogRef.close({ sucesso: true, suinoAtualizado: { ...suino, pesos: pesosAtualizados } });
+      this.dialogRef.close({ sucesso: true, bovinoAtualizado: { ...bovino, pesos: pesosAtualizados } });
 
     }
   }

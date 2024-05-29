@@ -9,7 +9,7 @@ import { AuthService } from './modules/shared/services/auth.service';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'suinocultura';
+  title = 'agrovino';
   logged: boolean =  false;
   logInSubscribtion: Subscription;
 

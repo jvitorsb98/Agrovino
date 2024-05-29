@@ -2,7 +2,7 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Atividade } from '../../../shared/model/atividade';
-import { Suino } from '../../../shared/model/suino';
+import { Bovino } from '../../../shared/model/bovino';
 import { DatabaseService } from '../../../shared/services/database.service';
 import { Sessao } from '../../../shared/model/sessao';
 
@@ -16,8 +16,8 @@ import { Sessao } from '../../../shared/model/sessao';
 export class CadastrarSessaoComponent {
   listaAtividades: Atividade[] = [];
   atividadesSelecionadas: string[] = [];
-  listaSuinos: Suino[] = [];
-  suinosFiltrados: Suino[] = [];
+  listaBovinos: Bovino[] = [];
+  bovinosFiltrados: Bovino[] = [];
   formCadastro: FormGroup = new FormGroup({});
   valorFiltro: string = '';
   valorPesquisa: any = '';
@@ -46,28 +46,28 @@ export class CadastrarSessaoComponent {
       }
     });
 
-    this.database.getSuinos().subscribe((suinos) => {
-      this.listaSuinos = [];
+    this.database.getBovinos().subscribe((bovinos) => {
+      this.listaBovinos = [];
 
-      for (const key in suinos) {
+      for (const key in bovinos) {
         console.log(key)
-        if (suinos.hasOwnProperty(key)) {
-          if ('status' in suinos[key] && suinos[key].status === 'Ativo')
-            this.listaSuinos.push({ ...suinos[key], brinco: key });
+        if (bovinos.hasOwnProperty(key)) {
+          if ('status' in bovinos[key] && bovinos[key].status === 'Ativo')
+            this.listaBovinos.push({ ...bovinos[key], brinco: key });
         }
       }
 
-      this.suinosFiltrados = this.listaSuinos;
+      this.bovinosFiltrados = this.listaBovinos;
 
-      this.listaSuinos.forEach((suino) => {
-        this.formCadastro.addControl(suino.brinco!, this.formBuilder.control(false));
+      this.listaBovinos.forEach((bovino) => {
+        this.formCadastro.addControl(bovino.brinco!, this.formBuilder.control(false));
       });
     });
   }
 
   checkAtividade(marcado: boolean) {
-    this.suinosFiltrados.forEach((suino) => {
-      let id = suino.brinco!;
+    this.bovinosFiltrados.forEach((bovino) => {
+      let id = bovino.brinco!;
       this.formCadastro.get(id)?.setValue(marcado);
     });
   }
@@ -87,17 +87,17 @@ export class CadastrarSessaoComponent {
         alert('Selecione ao menos uma atividade');
       }
     } else {
-      let idSuinos: string[] = [];
-      let suinoSelecionado = false;
+      let idBovinos: string[] = [];
+      let bovinoSelecionado = false;
       for (const key in this.formCadastro.value) {
         if (key !== 'descricao' && key !== 'data' && key !== 'atividades') {
-          suinoSelecionado = suinoSelecionado || this.formCadastro.value[key];
+          bovinoSelecionado = bovinoSelecionado || this.formCadastro.value[key];
           if (this.formCadastro.value[key]) {
-            idSuinos.push(key);
+            idBovinos.push(key);
           }
         }
       }
-      if (!suinoSelecionado) {
+      if (!bovinoSelecionado) {
         alert('Selecione ao menos um suíno');
         return;
       }
@@ -109,7 +109,7 @@ export class CadastrarSessaoComponent {
         descricao: this.formCadastro.value.descricao,
         data: data,
         status: false,
-        suinos: idSuinos,
+        bovinos: idBovinos,
         atividades: this.formCadastro.value.atividades
       };
 

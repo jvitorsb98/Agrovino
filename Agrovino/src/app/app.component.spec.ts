@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'suinocultura'`, () => {
+  it(`should have as title 'agrovino'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('suinocultura');
+    expect(app.title).toEqual('agrovino');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, suinocultura');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, agrovino');
   });
 });
