@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: 'cadastro_sessao', component: CadastrarSessaoComponent, canActivate: [AuthGuard] },
   { path: 'listagem_sessoes', component: ListarSecoesComponent , canActivate: [AuthGuard]},
   { path: 'sessao/finalizar/:id', component: FinalizarSecaoComponent, canActivate: [AuthGuard] },
-  { path: 'historico/:id', component: HistoricoComponent},
+  { path: 'historico/:id', component: HistoricoComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: LoginComponent },
   { path: '**', redirectTo: '/login' }

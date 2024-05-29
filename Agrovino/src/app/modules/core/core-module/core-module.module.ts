@@ -24,6 +24,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatStepperModule } from '@angular/material/stepper';
 import { SharedModuleModule } from '../../shared/shared-module/shared-module.module';
+import { FooterComponent } from '../footer/footer.component';
 
 
 
@@ -31,7 +32,8 @@ import { SharedModuleModule } from '../../shared/shared-module/shared-module.mod
   declarations: [
     HeaderComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -66,6 +68,7 @@ import { SharedModuleModule } from '../../shared/shared-module/shared-module.mod
   ],
   exports: [
     HeaderComponent,
+    FooterComponent,
     HomeComponent,
     LoginComponent,
     CommonModule,

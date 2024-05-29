@@ -1,34 +1,45 @@
-<div class="table-container">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Data</th>
-                <th>Atividade</th>
-                <th>Detalhes</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let atividade of historico">
-                <td>{{ formatarData(atividade.data) }}</td>
-                <td>{{ atividade.descricao }}</td>
-                <td>{{ atividade.detalhes }}</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
-<div class="btngroup">
-    <button mat-raised-button color="primary" (click)="exibirGraficoPeso()">
-        {{ mostrarGraficoPeso ? 'Esconder Historico de Peso' : 'Exibir Historico de Peso' }}
-    </button>
-    
-    <button mat-raised-button color="primary" (click)="exibirGraficoAtividade()">
-        {{ mostrarGraficoAtividade ? 'Esconder Historico de Atividade' : 'Exibir Historico de Atividade' }}
-    </button>
-</div>
-
-<div class="graficos">
-    <div class="grafico" *ngIf="mostrarGraficoAtividade">
-        <app-grafico-atividade [selectedBovino]="bovino" [sessoes]="historico" [atividadesBanco]="atividadesBanco"></app-grafico-atividade>
+<div class="container py-5">
+    <div class="h1 d-flex justify-content-center text-center">
+        <h1>Históricos do Bovíno</h1>
     </div>
+    <div class="pb-5">
+        <p>Aqui você pode visualizar o histórico de peso e de atividades do seu bovíno. Nele você encontrará todas as
+            informações necessárias de todas as atividades que realizou com seu rebanho.</p>
+    </div>
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Atividade</th>
+                    <th>Detalhes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let atividade of historico">
+                    <td>{{ formatarData(atividade.data) }}</td>
+                    <td>{{ atividade.descricao }}</td>
+                    <td>{{ atividade.detalhes }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="d-flex justify-content-center py-4">
+        <button class="btn btn-show shadow-sm mx-2" (click)="exibirGraficoPeso()">
+            {{ mostrarGraficoPeso ? 'Esconder Historico de Peso' : 'Exibir Historico de Peso' }}
+        </button>
+
+        <button class="btn btn-show shadow-sm mx-2" (click)="exibirGraficoAtividade()">
+            {{ mostrarGraficoAtividade ? 'Esconder Historico de Atividade' : 'Exibir Historico de Atividade' }}
+        </button>
+    </div>
+
+    <div class="graficos">
+        <div class="grafico" *ngIf="mostrarGraficoAtividade">
+            <app-grafico-atividade [selectedBovino]="bovino" [sessoes]="historico"
+                [atividadesBanco]="atividadesBanco"></app-grafico-atividade>
+        </div>
+    </div>
+
 </div>

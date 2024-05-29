@@ -50,8 +50,9 @@
           <td>{{ bovino.sexo }}</td>
           <td>{{ bovino.dt_nasc | idade: bovino.dt_saida: bovino.status }}</td>
           <td>
-            <img src="../../../assets/editar.png" title="Editar" alt="Editar" (click)="onEditar(bovino)">
-            <img src="../../../assets/lixeira.png" title="Excluir" alt="Excluir" (click)="onExcluir(bovino)">
+            <img src="../../../../assets/planilha.svg" title="Excluir" alt="Histórico" (click)="onHistorico(bovino.brinco ?? '')">
+            <img src="../../../../assets/editar.png" title="Editar" alt="Editar" (click)="onEditar(bovino)">
+            <img src="../../../../assets/lixeira.png" title="Excluir" alt="Excluir" (click)="onExcluir(bovino)">
           </td>
         </tr>
       </ng-container>

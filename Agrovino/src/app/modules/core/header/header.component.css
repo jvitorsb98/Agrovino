@@ -1,14 +1,22 @@
 .navbar-toggler {
-  color: #fff; /* branco */
+  color: #fff; 
 }
 
 nav {
-  background-color: #5daa0094 !important;
-  height: 9vh;
+  background-color: #a4c96e !important;
 }
 
+.bg-dropdown{
+  background-color: #a4c96e !important;
+}
+
+.dropdown-item:hover{
+  background-color: #89bb3e !important;
+}
+
+
 .nav-item {
-  color: #333; /* cinza escuro */
+  color: #333; 
   padding-inline: 5px;
   margin: 5px;
   width: auto;
@@ -17,7 +25,7 @@ nav {
 }
 
 .nav-item:hover {
-  background-color: #5eaa00b6; /* laranja mais escuro ao passar o mouse */
+  background-color: #89bb3e;
   cursor: pointer;
 }
 

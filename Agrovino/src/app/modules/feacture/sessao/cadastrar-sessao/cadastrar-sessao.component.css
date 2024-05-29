@@ -6,7 +6,7 @@
 
 .custom-line {
   border: 2px solid #605e5e;
-  background-color: #5daa0094;
+  background-color: #a4c96e;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   width: 100%;
@@ -15,7 +15,7 @@
 }
 
 .btn-submit {
-  background-color: #5daa0094;
+  background-color: #a4c96e;
   transition: color 0.3s ease, background-color 0.3s ease;
 }
 

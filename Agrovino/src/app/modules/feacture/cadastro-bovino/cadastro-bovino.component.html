@@ -3,7 +3,7 @@
     <h1>Cadastrar Bovíno</h1>
   </div>
   <div>
-    <p>Preencha este formulário com as informações do bovino, incluindo seu brinco, brinco do pai e da mãe, data de
+    <p>Aqui você pode cadastrar o bovino preenchendo o formulário com as informações, brinco, brinco do pai e da mãe, data de
       nascimento, data de saída, status e sexo. Lembre-se que a data de saída não pode ser antes da data de nascimento.
       Ao finalizar, clique em "Cadastrar" para salvar as informações.</p>
   </div>
@@ -15,17 +15,17 @@
     </div>
     <div class="box-form">
       <label>Brinco</label>
-      <input type="text" formControlName="brinco"
+      <input type="text" placeholder="Informe o brinco do animal" formControlName="brinco"
         [ngClass]="{'class-invalid':cadastro_bovino.get('brinco')?.invalid && cadastro_bovino.get('brinco')?.touched}" />
     </div>
     <div class="box-form">
       <label>Brinco do Pai</label>
-      <input type="text" formControlName="brinco_pai"
+      <input type="text" placeholder="Informe o brinco do pai animal" formControlName="brinco_pai"
         [ngClass]="{'class-invalid':cadastro_bovino.get('brinco_pai')?.invalid && cadastro_bovino.get('brinco_pai')?.touched}" />
     </div>
     <div class="box-form">
       <label>Brinco da Mãe</label>
-      <input type="text" formControlName="brinco_mae"
+      <input type="text" placeholder="Informe o brinco da mãe animal" formControlName="brinco_mae"
         [ngClass]="{'class-invalid':cadastro_bovino.get('brinco_mae')?.invalid && cadastro_bovino.get('brinco_mae')?.touched}" />
     </div>
     <div class="box-form">
@@ -41,7 +41,7 @@
 
     <div class="box-form">
       <label>Status</label>
-      <select class="box-option" name="status" formControlName="status"
+      <select class="box-option" placeholder="Status do animal" name="status" formControlName="status"
         [ngClass]="{'class-invalid':cadastro_bovino.get('status')?.invalid && cadastro_bovino.get('status')?.touched}">
         <option *ngFor="let item of lista_status" [value]="item">
           {{ item }}

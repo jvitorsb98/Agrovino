@@ -10,6 +10,7 @@ import { EditarBovinoComponent } from '../editar-bovino/editar-bovino.component'
 import { MatDialog } from '@angular/material/dialog';
 import { DatabaseService } from '../../shared/services/database.service';
 import { IdadePipe } from '../../shared/pipes/idade.pipe';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -26,7 +27,7 @@ export class ListagemBovinosComponent {
 
   listaBovinos: Bovino[] = [];
 
-  constructor(private pipe: DecimalPipe, public dialog: MatDialog, private dados: DatabaseService) {
+  constructor(private pipe: DecimalPipe, public dialog: MatDialog, private dados: DatabaseService, private router: Router) {
     this.atualizaLista();
   }
 
@@ -86,7 +87,9 @@ export class ListagemBovinosComponent {
   }
   
   
-  
+  onHistorico(brinco: string) {
+    this.router.navigate(['historico', brinco]);
+  }
   
   
 }

@@ -27,7 +27,7 @@ export class GraficoAtividadeComponent implements OnInit {
 
   processarDados() {
     this.sessoes.forEach((sessao) => {
-      if (sessao.bovinos.includes(this.selectedBovino?.brinco)) {
+      if (Array.isArray(sessao.bovinos) && sessao.bovinos.includes(this.selectedBovino?.brinco)) {
         sessao.atividades.forEach((atividadeId: string) => {
           const atividade = this.atividadesBanco[atividadeId];
           if (atividade) {
@@ -37,8 +37,7 @@ export class GraficoAtividadeComponent implements OnInit {
         });
       }
     });
-
-    // Remove duplicatas e ordena as atividades
+  
     this.atividades = this.atividades.filter((item, index, self) =>
       index === self.findIndex((t) => (
         t.id === item.id
@@ -65,8 +64,7 @@ export class GraficoAtividadeComponent implements OnInit {
             {
               label: "Qtde de Aplicações",
               data: dataBovino,
-              backgroundColor: 'rgba(75, 192, 192, 0.2)',
-              borderColor: 'rgba(75, 192, 192, 1)',
+              backgroundColor: '#a4c96e',
               borderWidth: 1,
               barThickness: 35
             }

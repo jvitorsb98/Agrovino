@@ -27,7 +27,7 @@
 }
 
 .appointment-card {
-    background-color: #5daa0094;
+    background-color: #a4c96e;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     padding: 20px;
@@ -38,7 +38,7 @@
 }
 
 .appointment-card:hover {
-    background-color: rgba(145, 209, 67, 0.4);
+    background-color: #91d14366;
 }
 
 .appointment-card h2 {

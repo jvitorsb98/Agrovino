@@ -1,42 +1,42 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary" *ngIf="isLogged">
   <div class="container-fluid">
-      <a href="/home">
-        <img src="../../../../assets/logo.svg" alt="agrobovino logo">
-      </a>
+    <a href="/home">
+      <img src="../../../../assets/logo.svg" alt="agrobovino logo">
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item ">
           <a class="nav-link" routerLink="/home">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/cadastro_bovino">Cadastrar Bovíno</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="cadastroDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Opções de cadastro
+          </a>
+          <ul class="dropdown-menu bg-dropdown" aria-labelledby="cadastroDropdown">
+            <li><a class="dropdown-item" routerLink="/cadastro_bovino">Cadastrar Bovíno</a></li>
+            <li><a class="dropdown-item" routerLink="/cadastro_peso_bovino">Cadastrar Peso</a></li>
+            <li><a class="dropdown-item" routerLink="/cadastro_atividade">Cadastrar Atividade</a></li>
+            <li><a class="dropdown-item" routerLink="/cadastro_sessao">Cadastrar Sessão</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="listagemDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Opções de listagem
+          </a>
+          <ul class="dropdown-menu bg-dropdown" aria-labelledby="listagemDropdown">
+            <li><a class="dropdown-item" routerLink="listagem_peso_bovino">Listar Bovínos</a></li>
+            <li><a class="dropdown-item" routerLink="/listagem_sessoes">Listar Sessões</a></li>
+            <li><a class="dropdown-item" routerLink="listagem_peso_bovino_grafico">Gráfico de Peso</a></li>
+          </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/cadastro_peso_bovino">Registrar Peso</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="listagem_peso_bovino">Listar Bovínos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="listagem_peso_bovino_grafico">Gráfico de Peso</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/cadastro_atividade">Cadastrar Atividade</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/cadastro_sessao">Cadastrar Sessão</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/listagem_sessoes">Listar Sessões</a>
+          <a class="nav-link button-logout" href="#" (click)="emitLogout()">Sair</a>
         </li>
       </ul>
-      <div class="nav-item ms-auto">
-        <a class="nav-link button-logout" href="#" (click)="emitLogout()">Sair</a>
-      </div>
     </div>
   </div>
 </nav>

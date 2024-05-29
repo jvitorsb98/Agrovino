@@ -7,11 +7,6 @@ img:hover {
   cursor: pointer;
 }
 
-.bg-table{
-  background-color: #5daa0094;
-}
-
-
 th, td {
-  background-color: #5daa0094 !important;
+  background-color: #a4c96e !important;
 }

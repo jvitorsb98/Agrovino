@@ -85,7 +85,6 @@ export class PesagemBovinosComponent implements OnInit {
     }
 
 
-    // Destruir o gráfico anterior, se existir
     Chart.register(...registerables);
     Chart.getChart(this.elemento.nativeElement)?.destroy();
 

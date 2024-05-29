@@ -15,7 +15,6 @@ import { SharedModuleModule } from './modules/shared/shared-module/shared-module
 import { CoreFeatureModule } from './modules/feacture/core-feacture/core-feacture.module';
 import { HistoricoComponent } from './modules/feacture/historico/historico.component';
 import { GraficoAtividadeComponent } from './modules/feacture/grafico-atividade/grafico-atividade.component';
-import { FooterComponent } from './modules/footer/footer.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
@@ -23,7 +22,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
-    FooterComponent,
   ],
   imports: [
     BrowserModule,

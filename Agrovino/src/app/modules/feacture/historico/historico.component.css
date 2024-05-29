@@ -1,0 +1,15 @@
+.btn-show {
+    background-color: #457d00a0 !important;
+    border: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    width: 300px;
+}
+
+.btn-show:hover {
+    background-color: #2a4c00a0 !important;
+}
+
+th,
+td {
+    background-color: #a4c96e !important;
+}
