@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Suino } from '../model/suino';
+import { Bovino } from '../model/bovino';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class SuinosService {
-  suinos: Suino[] = [];
+export class BovinosService {
+  bovinos: Bovino[] = [];
   constructor() { }
 
-  getSuinos(): Suino[] {
-    return this.suinos;
+  getSuinos(): Bovino[] {
+    return this.bovinos;
   }
 
-  setSuinos(suino: Suino) {
-    this.suinos.push(suino);
+  setSuinos(bovino: Bovino) {
+    this.bovinos.push(bovino);
   }
 }

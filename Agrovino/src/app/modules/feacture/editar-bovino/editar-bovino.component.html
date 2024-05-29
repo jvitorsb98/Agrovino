@@ -1,0 +1,42 @@
+<div class="form-edit">
+  <h2 mat-dialog-title>Editar o bovíno</h2>
+  <mat-dialog-content>
+    <form [formGroup]="cadastro_bovino">
+      <label>Brinco: </label>
+      <input type="text" [(ngModel)]="bovino.brinco" formControlName="brinco"
+        [ngClass]="{'class-invalid':cadastro_bovino.get('brinco')?.invalid && cadastro_bovino.get('brinco')?.touched}"><br>
+      <label>Brinco do pai: </label>
+      <input type="text" [(ngModel)]="bovino.brinco_pai" formControlName="brinco_pai"
+        [ngClass]="{'class-invalid':cadastro_bovino.get('brinco_pai')?.invalid && cadastro_bovino.get('brinco_pai')?.touched}"><br>
+      <label>Brinco da mãe: </label>
+      <input type="text" [(ngModel)]="bovino.brinco_mae" formControlName="brinco_mae"
+        [ngClass]="{'class-invalid':cadastro_bovino.get('brinco_mae')?.invalid && cadastro_bovino.get('brinco_mae')?.touched}"><br>
+      <label>Data de nascimento: </label>
+      <input type="date" [(ngModel)]="bovino.dt_nasc" formControlName="dt_nasc"
+        [ngClass]="{'class-invalid':cadastro_bovino.get('dt_nasc')?.invalid && cadastro_bovino.get('dt_nasc')?.touched}"><br>
+      <label>Data de saída: </label>
+      <input type="date" [(ngModel)]="bovino.dt_saida" formControlName="dt_saida"
+        [ngClass]="{'class-invalid':cadastro_bovino.get('dt_saida')?.invalid && cadastro_bovino.get('dt_saida')?.touched}"><br>
+      <label>Status: </label>
+      <select class="box-option" [(ngModel)]="bovino.status" name="status" formControlName="status"
+        [ngClass]="{'class-invalid':cadastro_bovino.get('status')?.invalid && cadastro_bovino.get('status')?.touched}">
+        <option *ngFor="let item of lista_status" [value]="item">
+          {{ item }}
+        </option>
+      </select><br>
+      <label>Sexo: </label>
+      <div class="radio">
+        <input type="radio" value="Macho" formControlName="sexo" [(ngModel)]="sexo"
+          [ngClass]="{'class-invalid':cadastro_bovino.get('sexo')?.invalid && cadastro_bovino.get('sexo')?.touched}" /> M
+        <input type="radio" value="Fêmea" formControlName="sexo" [(ngModel)]="sexo"
+          [ngClass]="{'class-invalid':cadastro_bovino.get('sexo')?.invalid && cadastro_bovino.get('sexo')?.touched}" /> F
+      </div>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" [mat-dialog-close]="true" cdkFocusInitial
+      (click)="salvarAlteracoes()">Salvar Alterações</button>
+    <button mat-raised-button color="warn" (click)="cancelar()">Cancelar</button>
+  </mat-dialog-actions>
+
+</div>

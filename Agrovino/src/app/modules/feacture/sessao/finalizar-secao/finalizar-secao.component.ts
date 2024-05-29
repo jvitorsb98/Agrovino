@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { Sessao } from '../../../shared/model/sessao';
 import { Atividade } from '../../../shared/model/atividade';
-import { Suino } from '../../../shared/model/suino';
+import { Bovino } from '../../../shared/model/bovino';
 import { DatabaseService } from '../../../shared/services/database.service';
 
 
@@ -20,18 +20,18 @@ export class FinalizarSecaoComponent implements OnInit {
   sessao: Sessao | undefined;
   atividadesSessao: Atividade[] = [];
   atividades: Atividade[] = [];
-  suinos: Suino[] = [];
+  bovinos: Bovino[] = [];
   id = '';
 
-  formSuinos: FormGroup = new FormGroup({});
-  listaSuinos: Suino[] = [];
-  suinosFiltrados: Suino[] = [];
+  formBovinos: FormGroup = new FormGroup({});
+  listaBovinos: Bovino[] = [];
+  bovinosFiltrados: Bovino[] = [];
   valorFiltro: string = '';
   valorPesquisa: any = '';
   minDate = new Date();
 
   constructor(private databaseService: DatabaseService, private route: ActivatedRoute, private formBuilder: FormBuilder, private router: Router) {
-    this.formSuinos = this.formBuilder.group({});
+    this.formBovinos = this.formBuilder.group({});
   }
 
   ngOnInit(): void {
@@ -57,16 +57,16 @@ export class FinalizarSecaoComponent implements OnInit {
       }
     });
   
-    this.databaseService.getSuinosSessao(this.id).subscribe((response) => {
-      const suinosRequests = response.map((suinoId: string) => this.databaseService.getSuinoPorBrinco(suinoId));
+    this.databaseService.getBovinosSessao(this.id).subscribe((response) => {
+      const bovinosRequests = response.map((bovinoId: string) => this.databaseService.getBovinoPorBrinco(bovinoId));
   
       // Esperar que todas as solicitações de suíno sejam concluídas
-      forkJoin(suinosRequests).subscribe((suinoResponses: (Suino | null)[]) => {
+      forkJoin(bovinosRequests).subscribe((bovinoResponses: (Bovino | null)[]) => {
         // Filtrar suínos nulos e adicionar suínos válidos à lista
-        const filteredSuinoResponses = suinoResponses.filter(response => response !== null);
-        filteredSuinoResponses.forEach(response => {
-          if (this.isSuino(response)) { 
-            this.suinos.push({
+        const filteredBovinoResponses = bovinoResponses.filter(response => response !== null);
+        filteredBovinoResponses.forEach(response => {
+          if (this.isBovino(response)) { 
+            this.bovinos.push({
               brinco: response.brinco,
               brinco_pai: response.brinco_pai,
               brinco_mae: response.brinco_mae,
@@ -79,11 +79,11 @@ export class FinalizarSecaoComponent implements OnInit {
           }
         });
       
-        this.suinosFiltrados = this.suinos;
+        this.bovinosFiltrados = this.bovinos;
       
-        this.suinos.forEach((suino) => {
-          if (suino && suino.brinco) { 
-            this.formSuinos.addControl(suino.brinco, this.formBuilder.control(true));
+        this.bovinos.forEach((bovino) => {
+          if (bovino && bovino.brinco) { 
+            this.formBovinos.addControl(bovino.brinco, this.formBuilder.control(true));
           }
         });
       });
@@ -92,9 +92,9 @@ export class FinalizarSecaoComponent implements OnInit {
   
 
   checkAtividade(marcado: boolean) {
-    this.suinosFiltrados.forEach((suino) => {
-      let id = suino.brinco!;
-      this.formSuinos.get(id)?.setValue(marcado);
+    this.bovinosFiltrados.forEach((bovino) => {
+      let id = bovino.brinco!;
+      this.formBovinos.get(id)?.setValue(marcado);
     });
   }
 
@@ -102,8 +102,8 @@ export class FinalizarSecaoComponent implements OnInit {
     // Formatar a data para 'yyyy-MM-dd'
     let data_pesquisa = this.formatarData(data);
     
-    // Filtrar a listaSuinos pela data de nascimento
-    return this.listaSuinos.filter(suino => this.formatarData(new Date(suino.dt_nasc)) === data_pesquisa);
+    // Filtrar a listaBovinos pela data de nascimento
+    return this.listaBovinos.filter(bovino => this.formatarData(new Date(bovino.dt_nasc)) === data_pesquisa);
   }
   
   formatarData(data: Date): string {
@@ -117,57 +117,57 @@ export class FinalizarSecaoComponent implements OnInit {
   }
 
   filtrarBrinco(brinco: string) {
-    return this.listaSuinos.filter(suino => suino.brinco === brinco);
+    return this.listaBovinos.filter(bovino => bovino.brinco === brinco);
   }
 
   filtrarPai(brinco_pai: string) {
-    return this.listaSuinos.filter(suino => suino.brinco_pai === brinco_pai);
+    return this.listaBovinos.filter(bovino => bovino.brinco_pai === brinco_pai);
   }
 
   filtrarMae(brinco_mae: string) {
-    return this.listaSuinos.filter(suino => suino.brinco_mae === brinco_mae);
+    return this.listaBovinos.filter(bovino => bovino.brinco_mae === brinco_mae);
   }
 
   filtrarSexo(sexo: string) {
-    return this.listaSuinos.filter(suino => suino.sexo === sexo);
+    return this.listaBovinos.filter(bovino => bovino.sexo === sexo);
   }
 
   filtrarListagem(filtro: string) {
     switch (filtro) {
       case 'brinco':
-        this.suinosFiltrados = this.filtrarBrinco(this.valorPesquisa.toString());
+        this.bovinosFiltrados = this.filtrarBrinco(this.valorPesquisa.toString());
         break;
       case 'brincoPai':
-        this.suinosFiltrados = this.filtrarPai(this.valorPesquisa.toString());
+        this.bovinosFiltrados = this.filtrarPai(this.valorPesquisa.toString());
         break;
 
       case 'brincoMae':
-        this.suinosFiltrados = this.filtrarMae(this.valorPesquisa.toString());
+        this.bovinosFiltrados = this.filtrarMae(this.valorPesquisa.toString());
         break;
 
       case 'dataNascimento':
-        this.suinosFiltrados = this.filtrarDataNascimento(this.valorPesquisa);
+        this.bovinosFiltrados = this.filtrarDataNascimento(this.valorPesquisa);
         break;
 
       case 'sexo':
-        this.suinosFiltrados = this.filtrarSexo(this.valorPesquisa);
+        this.bovinosFiltrados = this.filtrarSexo(this.valorPesquisa);
         break;
 
       case '':
-        this.suinosFiltrados = this.listaSuinos;
+        this.bovinosFiltrados = this.listaBovinos;
         break;
     }
   }
 
   limparFiltro(){
-    this.suinosFiltrados = this.listaSuinos;
+    this.bovinosFiltrados = this.listaBovinos;
     this.valorPesquisa = '';
   }
 
   nextStep(atividade: Atividade): void {
     if(this.sessao){
-      for(const suino of this.listaSuinos){
-        this.databaseService.mudarStatusAtividade(this.sessao.id, atividade.id, suino.brinco!, this.formSuinos.get(suino.brinco!)?.value);
+      for(const bovino of this.listaBovinos){
+        this.databaseService.mudarStatusAtividade(this.sessao.id, atividade.id, bovino.brinco!, this.formBovinos.get(bovino.brinco!)?.value);
       }
     }
   }
@@ -180,7 +180,7 @@ export class FinalizarSecaoComponent implements OnInit {
     this.router.navigate(['listagem_sessoes']);
   }
 
-  isSuino(obj: any): obj is Suino {
+  isBovino(obj: any): obj is Bovino {
     return obj && obj.brinco !== undefined && obj.brinco_pai !== undefined &&
            obj.brinco_mae !== undefined && obj.dt_nasc !== undefined &&
            obj.dt_saida !== undefined && obj.status !== undefined &&

@@ -1,0 +1,20 @@
+.grafico-bovinos-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+}
+
+.grafico-bovinos {
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.btn-color {
+    background-color: #5daa0094;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.btn-color:hover {
+    background-color: #38650094;
+}

@@ -52,7 +52,7 @@
         </div>
       </div>
 
-      <div class="col-6 suinos">
+      <div class="col-6 bovinos">
         <div class="text-center">
           <h2>Bovínos</h2>
         </div>
@@ -63,10 +63,10 @@
             </mat-checkbox>
           </div>
         </div>
-        <div class="suinos-container container">
+        <div class="bovinos-container container">
           <section class="row">
-            <mat-checkbox class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4" *ngFor="let suino of suinosFiltrados"
-              formControlName="{{ suino.brinco }}">{{ suino.brinco }}</mat-checkbox>
+            <mat-checkbox class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4" *ngFor="let bovino of bovinosFiltrados"
+              formControlName="{{ bovino.brinco }}">{{ bovino.brinco }}</mat-checkbox>
           </section>
         </div>
       </div>

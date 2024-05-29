@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, retry, tap, throwError, forkJoin, switchMap , mergeMap} from 'rxjs';
-import { Suino } from '../model/suino';
+import { Bovino } from '../model/bovino';
 import { Atividade } from '../model/atividade';
 import { Sessao } from '../model/sessao';
 
@@ -19,46 +19,46 @@ export class DatabaseService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   }
 
-  getSuinos(): Observable<Suino[]> {
+  getBovinos(): Observable<Bovino[]> {
     return this.http
-      .get<Suino[]>(`${this.endpoint}/suinos.json`)
+      .get<Bovino[]>(`${this.endpoint}/bovinos.json`)
       .pipe(
         retry(2),
         catchError(this.handleError)
       );
   }
 
-  adicionarSuino(suino: Suino): Observable<void> {
+  adicionarBovino(bovino: Bovino): Observable<void> {
 
-    const url = `${this.endpoint}/suinos/${suino.brinco}.json`;
-    return this.http.put<void>(url, suino, this.httpOptions)
+    const url = `${this.endpoint}/bovinos/${bovino.brinco}.json`;
+    return this.http.put<void>(url, bovino, this.httpOptions)
       .pipe(
-        tap(() => console.log(`Suíno adicionado com brinco ${suino.brinco}`)),
+        tap(() => console.log(`Suíno adicionado com brinco ${bovino.brinco}`)),
         catchError(this.handleError)
       );
   }
 
-  getSuinoPorBrinco(brinco: string): Observable<Suino | null> {
-    const url = `${this.endpoint}/suinos/${brinco}.json`;
+  getBovinoPorBrinco(brinco: string): Observable<Bovino | null> {
+    const url = `${this.endpoint}/bovinos/${brinco}.json`;
 
-    return this.http.get<Suino>(url)
+    return this.http.get<Bovino>(url)
       .pipe(
         catchError(this.handleError)
       );
   }
 
 
-  atualizeSuino(brinco: string, suino: Suino): Observable<void> {
-    const url = `${this.endpoint}/suinos/${brinco}.json`;
-    return this.http.put<void>(url, suino, this.httpOptions)
+  atualizeBovino(brinco: string, bovino: Bovino): Observable<void> {
+    const url = `${this.endpoint}/bovinos/${brinco}.json`;
+    return this.http.put<void>(url, bovino, this.httpOptions)
       .pipe(
         tap(() => console.log(`Suíno com brinco ${brinco} atualizado com sucesso`)),
         catchError(this.handleError)
       );
   }
 
-  deletaSuino(brinco: string): Observable<void> {
-    const url = `${this.endpoint}/suinos/${brinco}.json`;
+  deletaBovino(brinco: string): Observable<void> {
+    const url = `${this.endpoint}/bovinos/${brinco}.json`;
     return this.http.delete<void>(url, this.httpOptions)
       .pipe(
         tap(() => console.log(`Suíno com brinco ${brinco} excluído com sucesso`)),
@@ -109,15 +109,15 @@ export class DatabaseService {
       .pipe(retry(2), catchError(this.handleError));
   }
 
-  getHistoricoSuino(id: string): Observable<any[]> {
-    return this.http.get<any>(`${this.endpoint}/suinos/${id}.json`).pipe(
+  getHistoricoBovino(id: string): Observable<any[]> {
+    return this.http.get<any>(`${this.endpoint}/bovinos/${id}.json`).pipe(
         catchError(this.handleError),
-        map((suino: any) => {
-            if (!suino || !suino.pesos) {
+        map((bovino: any) => {
+            if (!bovino || !bovino.pesos) {
                 return [];
             }
             // Obter os pesos do suíno
-            const pesos = Object.values(suino.pesos);
+            const pesos = Object.values(bovino.pesos);
 
             // Mapear os pesos para o formato desejado
             const historico = pesos.map((peso: any) => ({
@@ -140,10 +140,10 @@ export class DatabaseService {
         .put(this.endpoint + `/sessoes/${sessao.id}/.json`, sessao)
         .subscribe((response) => {
           if (response && 'name' in response) {
-            let suinos: any = {};
+            let bovinos: any = {};
             for (let i = 0; i < sessao.atividades.length; i++) {
               let data = {
-                ...suinos,
+                ...bovinos,
                 id: sessao.atividades[i],
               };
               this.http
@@ -197,19 +197,19 @@ export class DatabaseService {
       );
   }
 
-  getSuinosSessao(idSessao: string): Observable<string[]> {
+  getBovinosSessao(idSessao: string): Observable<string[]> {
     return this.http
-      .get<string[]>(`${this.endpoint}/sessoes/${idSessao}/suinos.json`)
+      .get<string[]>(`${this.endpoint}/sessoes/${idSessao}/bovinos.json`)
       .pipe(
         retry(2),
         catchError(this.handleError)
       );
   }
 
-  getStatusSuino(
+  getStatusBovino(
     idSessao: string,
     idAtividade: string,
-    idSuino: string
+    idBovino: string
   ): Observable<boolean> {
     return this.http
       .get(this.endpoint + `/sessoes/${idSessao}/atividades/.json`)
@@ -224,7 +224,7 @@ export class DatabaseService {
               atividade.hasOwnProperty('id') &&
               atividade['id'] === idAtividade
             ) {
-              return atividade[idSuino] as boolean;
+              return atividade[idBovino] as boolean;
             }
           }
           return false;
@@ -235,7 +235,7 @@ export class DatabaseService {
   mudarStatusAtividade(
     idSessao: string,
     idAtividade: string,
-    idSuino: string,
+    idBovino: string,
     status: boolean
   ) {
     this.http
@@ -252,7 +252,7 @@ export class DatabaseService {
               atividade.hasOwnProperty('id') &&
               atividade['id'] === idAtividade
             ) {
-              atividade[idSuino] = status;
+              atividade[idBovino] = status;
               console.log(atividade);
               this.http
                 .put(

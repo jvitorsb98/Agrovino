@@ -1,0 +1,52 @@
+<div class="container p-5">
+  <div class="text-center">
+    <div class="title">
+      <h1>Gráfico de Peso dos Bovínos</h1>
+    </div>
+    <div>
+      <p>Aqui você pode verificar um gráfico de peso do seu bovíno informando o brinco do mesmo. Todas as pesagens e datas serão informadas no
+        gráfico, facilitando a visualização do histórico de peso do animal e o controle.</p>
+        <p>Após selecionar o bovíno, se algum dado cadastrado foi informado errado, basta clicar no botão de editar para editar o peso e a data.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="input-group mb-3">
+        <input placeholder="Brinco do animal" type="text" class="form-control" [(ngModel)]="brincoBovino"
+          (change)="buscarBovino()">
+        <button class="btn btn-color" type="button" (click)="renderizarGrafico()">Consultar</button>
+      </div>
+      <span *ngIf="!bovinoEncontrado" class="text-danger">Suíno não encontrado.</span>
+    </div>
+  </div>
+  <div class="container p-5" *ngIf="bovinoEncontrado">
+    <div class="row">
+      <div class="col">
+        <canvas #graficoBovinos></canvas>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col">
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="text-center">Data</th>
+              <th class="text-center">Peso</th>
+              <th class="text-center">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let bovino of bovinoSelecionado?.pesos">
+              <td class="text-center">{{ bovino.dt_pesagem }}</td>
+              <td class="text-center">{{ bovino.peso }}</td>
+              <td class="text-center">
+                <button class="btn btn-sm btn-color"
+                  (click)="editarPeso(bovinoSelecionado, bovino.dt_pesagem)">Editar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
