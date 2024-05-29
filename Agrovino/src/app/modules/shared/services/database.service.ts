@@ -11,7 +11,7 @@ import { Sessao } from '../model/sessao';
 })
 export class DatabaseService {
 
-  private endpoint = "https://suinocultura-31ff3-default-rtdb.firebaseio.com";
+  private endpoint = "https://agrovino-c9ba4-default-rtdb.firebaseio.com";
 
   constructor(private http: HttpClient) { }
 

@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "suinocultura-31ff3"
-  }
+    "default": "agrovino-c9ba4",
+    "agrovino": "agrovino-c9ba4"
+  },
+  "targets": {},
+  "etags": {}
 }
