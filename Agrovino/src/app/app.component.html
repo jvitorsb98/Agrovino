@@ -1,7 +1,7 @@
 <div id="wrapper ">
   <app-header [isLogged]="logged" (logout)="onLogout($event)" (login)="onLogin($event)"
     (signup)="onSignUp($event)"></app-header>
-  <div id="content">
+  <div id="content" class="container-all">
     <router-outlet></router-outlet>
   </div>
   <app-footer></app-footer>
