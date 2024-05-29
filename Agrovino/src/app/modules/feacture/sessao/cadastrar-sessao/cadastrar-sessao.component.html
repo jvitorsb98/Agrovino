@@ -56,50 +56,6 @@
         <div class="text-center">
           <h2>Bovínos</h2>
         </div>
-        <div class="filter-container d-flex">
-          <div class="d-flex align-items-center justify-content-center">
-            <div class="m-2 ">
-              <label for="filtro">Filtro</label>
-              <select id="filtro" [(ngModel)]="valorFiltro" required>
-                <option value="brinco">Brinco do Animal</option>
-                <option value="brinco_pai">Brinco do pai</option>
-                <option value="brinco_mae">Brinco da mãe</option>
-                <option value="dt_nasc">Data de nascimento</option>
-                <option value="sexo">Sexo</option>
-              </select>
-            </div>
-
-            <mat-form-field subscriptSizing="dynamic" *ngIf="valorFiltro == 'sexo'" class="m-2">
-              <mat-label>Sexo</mat-label>
-              <mat-select matNativeControl required [(ngModel)]="valorPesquisa">
-                <mat-option value="Macho">Masculino</mat-option>
-                <mat-option value="Feminino">Feminino</mat-option>
-              </mat-select>
-            </mat-form-field>
-
-            <mat-form-field subscriptSizing="dynamic" class="m-2"
-              *ngIf="valorFiltro.slice(0, 4) == 'brin' || !valorFiltro">
-              <mat-label>Brinco</mat-label>
-              <input type="number" matInput placeholder="Valor" [(ngModel)]="valorPesquisa" />
-            </mat-form-field>
-
-            <mat-form-field subscriptSizing="dynamic" class="m-2" *ngIf="valorFiltro.slice(0, 4) == 'data'">
-              <mat-label>Data</mat-label>
-              <input matInput [matDatepicker]="picker" [(ngModel)]="valorPesquisa" />
-              <mat-hint>MM/DD/YYYY</mat-hint>
-              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
-            <div class="col-4 px-3">
-              <a mat-fab color="primary" aria-label="Pesquisar" (click)="filtrarListagem(valorFiltro)">
-                <mat-icon>search</mat-icon>
-              </a>
-              <button (click)="limparFiltro()" mat-mini-fab color="warn" aria-label="Limpar">
-                <mat-icon>clear</mat-icon>
-              </button>
-            </div>
-          </div>
-        </div>
         <div class="row">
           <div class="text-right">
             <mat-checkbox (change)="checkAtividade($event.checked)">
