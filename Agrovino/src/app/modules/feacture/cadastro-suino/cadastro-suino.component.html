@@ -1,0 +1,65 @@
+<div class="container text-center py-3">
+  <div class="title">
+    <h1>Cadastrar Bovíno</h1>
+  </div>
+  <div>
+    <p>Preencha este formulário com as informações do bovino, incluindo seu brinco, brinco do pai e da mãe, data de
+      nascimento, data de saída, status e sexo. Lembre-se que a data de saída não pode ser antes da data de nascimento.
+      Ao finalizar, clique em "Cadastrar" para salvar as informações.</p>
+  </div>
+</div>
+<div class="box-body py-5">
+  <form [formGroup]="cadastro_suino">
+    <div class="text-center">
+      <h3 mat-dialog-title>Dados do Bovíno</h3>
+    </div>
+    <div class="box-form">
+      <label>Brinco</label>
+      <input type="text" formControlName="brinco"
+        [ngClass]="{'class-invalid':cadastro_suino.get('brinco')?.invalid && cadastro_suino.get('brinco')?.touched}" />
+    </div>
+    <div class="box-form">
+      <label>Brinco do Pai</label>
+      <input type="text" formControlName="brinco_pai"
+        [ngClass]="{'class-invalid':cadastro_suino.get('brinco_pai')?.invalid && cadastro_suino.get('brinco_pai')?.touched}" />
+    </div>
+    <div class="box-form">
+      <label>Brinco da Mãe</label>
+      <input type="text" formControlName="brinco_mae"
+        [ngClass]="{'class-invalid':cadastro_suino.get('brinco_mae')?.invalid && cadastro_suino.get('brinco_mae')?.touched}" />
+    </div>
+    <div class="box-form">
+      <label>Data de Nascimento</label>
+      <input type="date" formControlName="dt_nasc"
+        [ngClass]="{'class-invalid':cadastro_suino.get('dt_nasc')?.invalid && cadastro_suino.get('dt_nasc')?.touched}" />
+    </div>
+    <div class="box-form">
+      <label>Data de Saída</label>
+      <input type="date" formControlName="dt_saida"
+        [ngClass]="{'class-invalid':cadastro_suino.get('dt_saida')?.invalid && cadastro_suino.get('dt_saida')?.touched}" />
+    </div>
+
+    <div class="box-form">
+      <label>Status</label>
+      <select class="box-option" name="status" formControlName="status"
+        [ngClass]="{'class-invalid':cadastro_suino.get('status')?.invalid && cadastro_suino.get('status')?.touched}">
+        <option *ngFor="let item of lista_status" [value]="item">
+          {{ item }}
+        </option>
+      </select>
+    </div>
+
+    <div class="radio">
+      <label>Sexo</label>
+      <input type="radio" value="Masculino" formControlName="sexo"
+        [ngClass]="{'class-invalid':cadastro_suino.get('sexo')?.invalid && cadastro_suino.get('sexo')?.touched}" /> M
+      <input type="radio" value="Feminino" formControlName="sexo"
+        [ngClass]="{'class-invalid':cadastro_suino.get('sexo')?.invalid && cadastro_suino.get('sexo')?.touched}" /> F
+    </div>
+    <mat-dialog-actions align="center">
+      <button mat-raised-button (click)="onSubmit()"
+        [ngStyle]="{ 'background-color': '#6db318', 'color': 'black' }">Cadastrar</button>
+    </mat-dialog-actions>
+  </form>
+
+</div>

@@ -1,0 +1,17 @@
+img {
+  width: 13px;
+  margin-left: 10px;
+}
+
+img:hover {
+  cursor: pointer;
+}
+
+.bg-table{
+  background-color: #5daa0094;
+}
+
+
+th, td {
+  background-color: #5daa0094 !important;
+}

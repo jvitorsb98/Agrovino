@@ -1,0 +1,25 @@
+.suinos-container {
+  height: 350px;
+  overflow-y: auto;
+}
+
+
+.custom-line {
+  border: 2px solid #605e5e;
+  background-color: #5daa0094;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  padding: 20px;
+  margin-top: 50px;
+}
+
+.btn-submit {
+  background-color: #5daa0094;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+  background-color: #294b0094;
+  cursor: pointer;
+}

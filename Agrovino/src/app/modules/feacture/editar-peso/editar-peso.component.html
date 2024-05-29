@@ -1,0 +1,24 @@
+<div class="form-edit">
+  <h2 mat-dialog-title>Editar Peso do Bovíno</h2>
+  <mat-dialog-content>
+    <form [formGroup]="edicaoPesoForm">
+      <mat-form-field>
+        <input matInput type="number" placeholder="Novo peso" formControlName="novoPeso">
+        <mat-error *ngIf="edicaoPesoForm.controls['novoPeso'].hasError('required')">O peso é obrigatório</mat-error>
+        <mat-error *ngIf="edicaoPesoForm.controls['novoPeso'].hasError('min')">O peso deve ser maior ou igual a
+          0</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Escolha uma data" formControlName="novaData">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="edicaoPesoForm.controls['novaData'].hasError('required')">A data é obrigatória</mat-error>
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" [mat-dialog-close]="true" (click)="salvarEdicao()">Salvar</button>
+    <button mat-raised-button color="warn" [mat-dialog-close]="false" (click)="cancelar()">Cancelar</button>
+  </mat-dialog-actions>
+
+</div>

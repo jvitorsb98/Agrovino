@@ -1,0 +1,66 @@
+<div class="container py-5">
+  <div class="text-center">
+    <div class="title">
+      <h1>Lista de Sessões</h1>
+    </div>
+    <div>
+      <p>Aqui você pode visualizar as sessões que cadastrou, podendo ver a data em que foi criada, a descrição dessa sessão e o status dela.
+      </p>
+      <p>Caso a sessão ainda esteja em aberto, pode finalizá-la clicando no botão finalizar.</p>
+    </div>
+  </div>
+  <div class="text-center">
+    <h2>Sessões</h2>
+  </div>
+  <div class="border border-secondary rounded py-5">
+    <div class="filtro">
+      <mat-form-field>
+        <mat-label>Filtro</mat-label>
+        <mat-select matNativeControl required [(ngModel)]="valorFiltro">
+          <mat-option value="data">Data</mat-option>
+          <mat-option value="status">Status</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field *ngIf="valorFiltro == 'status'">
+        <mat-label>Status</mat-label>
+        <mat-select matNativeControl required [(ngModel)]="valorPesquisa">
+          <mat-option value="agendado">Agendado</mat-option>
+          <mat-option value="realizado">Realizado</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field *ngIf="valorFiltro.slice(0,4) == 'data'">
+        <mat-label>Data</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="valorPesquisa">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <button mat-fab color="primary" aria-label="Pesquisar" (click)="filtrarListagem(valorFiltro)">
+        <mat-icon>search</mat-icon>
+      </button>
+
+      <button *ngIf="valorPesquisa" mat-mini-fab color="warn" aria-label="Limpar" (click)="limparFiltro()">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </div>
+
+    <div class="appointment-list">
+      <div *ngFor="let sessao of listaFiltrada" class="appointment-card">
+        <div *ngIf="!sessao.status && verificarAtraso(sessao.data)" class="late">!</div>
+        <h2>Data: {{sessao.data | date:'dd-MM-yyyy'}}</h2>
+        <p>Descrição: {{sessao.descricao}}</p>
+        <p class="status" [ngClass]="{'realizado': sessao.status, 'agendado': !sessao.status}">
+          {{sessao.status ? 'Realizado' : 'Agendado'}}
+        </p>
+        <div class="btn-container">
+          <button class="btn btn-submit" *ngIf="!sessao.status" (click)="finalizarSessao(sessao.id)">Finalizar
+            Sessão</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<div class="table-container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Atividade</th>
+                <th>Detalhes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let atividade of historico">
+                <td>{{ formatarData(atividade.data) }}</td>
+                <td>{{ atividade.descricao }}</td>
+                <td>{{ atividade.detalhes }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="btngroup">
+    <button mat-raised-button color="primary" (click)="exibirGraficoPeso()">
+        {{ mostrarGraficoPeso ? 'Esconder Historico de Peso' : 'Exibir Historico de Peso' }}
+    </button>
+    
+    <button mat-raised-button color="primary" (click)="exibirGraficoAtividade()">
+        {{ mostrarGraficoAtividade ? 'Esconder Historico de Atividade' : 'Exibir Historico de Atividade' }}
+    </button>
+</div>
+
+<div class="graficos">
+    <div class="grafico" *ngIf="mostrarGraficoAtividade">
+        <app-grafico-atividade [selectedSuino]="suino" [sessoes]="historico" [atividadesBanco]="atividadesBanco"></app-grafico-atividade>
+    </div>
+</div>

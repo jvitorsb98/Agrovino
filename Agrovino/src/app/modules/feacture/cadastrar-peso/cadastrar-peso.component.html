@@ -1,0 +1,38 @@
+<div class="container text-center py-3">
+  <div class="title">
+    <h1>Cadastrar Bovíno</h1>
+  </div>
+  <div>
+    <p>Selecione o brinco do bobíno ao qual queira registrar o peso e informe a data da pesagem e o peso. Depois clique
+      em cadastrar para registar o peso. Todos os pesos do bovíno podem ser visualizados na sessão de gráfico de peso.
+    </p>
+  </div>
+</div>
+<div class="box-body container py-5 ">
+  <mat-dialog-content>
+    <form [formGroup]="formCadastro">
+      <div class="text-center pb-3">
+        <h4 mat-dialog-title>Cadastro de Peso</h4>
+      </div>
+      <label>Brinco do animal</label>
+      <div class="dropdown bg-white">
+        <ng-multiselect-dropdown [placeholder]="'Selecione o animal'" [settings]="dropdownSettings" [data]="suinos"
+          [ngStyle]="{ 'background-color': 'white', 'color': 'black' }" (onDeSelect)="onDeselect($event)"
+          (onSelect)="onItemSelect($event)"></ng-multiselect-dropdown>
+      </div>
+      <label class="pt-3">Data da pesagem</label>
+      <input type="date" formControlName="dt_pesagem"
+        [ngClass]="{'class-invalid':formCadastro.get('dt_pesagem')?.invalid && formCadastro.get('dt_pesagem')?.touched}">
+      <label class="pt-3">Peso (Kg)</label>
+      <input type="text" formControlName="peso"
+        [ngClass]="{'class-invalid':formCadastro.get('peso')?.invalid && formCadastro.get('peso')?.touched}">
+
+      <mat-dialog-actions class="pt-4" align="center">
+        <button mat-raised-button [ngStyle]="{ 'background-color': '#6db318', 'color': 'black' }"
+          (click)="onSubmit()">Cadastrar</button>
+      </mat-dialog-actions>
+    </form>
+
+  </mat-dialog-content>
+
+</div>

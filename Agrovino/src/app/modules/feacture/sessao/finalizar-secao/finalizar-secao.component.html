@@ -1,0 +1,107 @@
+<div class="container pt-3">
+  <div class="text-center py-2">
+    <div class="title">
+      <h1>Finalizar Sessão</h1>
+    </div>
+    <div>
+      <p>Aqui você pode finalizar a sessão escolhida, basta indicar os animais que participaram da atividade e finalizar.
+      </p>
+      <p>Quando finalizar, o status da sessão mudara na página de listar as sessões.</p>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center py-5">
+    <div class="form-finish p-4">
+      <div *ngIf="sessao" class="sessao w-100 text-center">
+        <h1>{{sessao.data | date:'dd-MM-yyyy'}}</h1>
+
+        <br>
+
+        <div>
+          <h2>{{ sessao.descricao }}</h2>
+        </div>
+
+        <br>
+
+        <mat-vertical-stepper [linear]="true" #stepper>
+          <mat-step *ngFor="let atividade of atividades" [editable]="false" [label]="atividade.descricao">
+            <p>Selecione todos os suínos que participaram da sessão:</p>
+
+            <div class="filter-container">
+              <mat-form-field>
+                <mat-label>Filtro</mat-label>
+                <mat-select matNativeControl required [(ngModel)]="valorFiltro">
+                  <mat-option value="brinco">Brinco do Animal</mat-option>
+                  <mat-option value="brinco_pai">Brinco do pai</mat-option>
+                  <mat-option value="brinco_mae">Brinco da mãe</mat-option>
+                  <mat-option value="data_nasc">Data de nascimento</mat-option>
+                  <mat-option value="sexo">Sexo</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field *ngIf="valorFiltro == 'sexo'">
+                <mat-label>Sexo</mat-label>
+                <mat-select matNativeControl required [(ngModel)]="valorPesquisa">
+                  <mat-option value="Macho">Masculino</mat-option>
+                  <mat-option value="Feminino">Feminino</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field *ngIf="valorFiltro.slice(0,4) == 'brin' || !valorFiltro">
+                <mat-label>Brinco</mat-label>
+                <input type="number" matInput placeholder="Valor" [(ngModel)]="valorPesquisa">
+              </mat-form-field>
+
+              <mat-form-field *ngIf="valorFiltro.slice(0,4) == 'data'">
+                <mat-label>Data</mat-label>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="valorPesquisa">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+
+              <button mat-fab color="primary" aria-label="Pesquisar" (click)="filtrarListagem(valorFiltro)">
+                <mat-icon>search</mat-icon>
+              </button>
+              <button mat-mini-fab color="warn" aria-label="Limpar">
+                <mat-icon (click)="limparFiltro()">clear</mat-icon>
+              </button>
+            </div>
+
+            <form [formGroup]="formSuinos">
+              <div class="col-6 suinos">
+                <div class="row">
+                  <div class="col-6 text-right">
+                    <mat-checkbox (change)="checkAtividade($event.checked)">
+                      Selecionar Todos
+                    </mat-checkbox>
+                  </div>
+                </div>
+                <div class="suinos-container container">
+                  <section class="row">
+                    <mat-checkbox class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4"
+                      *ngFor="let suino of suinosFiltrados" formControlName="{{ suino.brinco }}">{{ suino.brinco
+                      }}</mat-checkbox>
+                  </section>
+                </div>
+              </div>
+            </form>
+
+            <br>
+
+            <button class="btn btn-submit" matStepperNext (click)="nextStep(atividade)">Próximo</button>
+          </mat-step>
+
+          <mat-step>
+            <ng-template matStepLabel>Finalizar</ng-template>
+            <p>Finalizar sessão</p>
+            <button class="btn btn-submit" (click)="finalizarSessao()">Finalizar</button>
+          </mat-step>
+        </mat-vertical-stepper>
+      </div>
+
+      <div *ngIf="!sessao">
+        <mat-spinner></mat-spinner>
+      </div>
+    </div>
+  </div>
+</div>

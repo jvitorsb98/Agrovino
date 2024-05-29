@@ -1,0 +1,20 @@
+.btn-submit {
+  background-color: #5daa0094;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+  background-color: #2c500094;
+  cursor: pointer;
+}
+
+.form-finish{
+  background-color: #5daa0094;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+mat-vertical-stepper{
+
+  background-color: #5eaa0000;
+}

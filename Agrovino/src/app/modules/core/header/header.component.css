@@ -1,0 +1,32 @@
+.navbar-toggler {
+  color: #fff; /* branco */
+}
+
+nav {
+  background-color: #5daa0094 !important;
+}
+
+.nav-item {
+  color: #333; /* cinza escuro */
+  padding-inline: 5px;
+  margin: 5px;
+  width: auto;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  border-radius: 5px;
+}
+
+.nav-item:hover {
+  background-color: #5eaa00b6; /* laranja mais escuro ao passar o mouse */
+  cursor: pointer;
+}
+
+.button-logout {
+  padding-inline: 5px;
+  margin: 5px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  border-radius: 5px;
+}
+
+#navbarLogin{
+  float: right;
+}

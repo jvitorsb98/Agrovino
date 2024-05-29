@@ -1,0 +1,18 @@
+.footer {
+  background-color: #5daa0094 !important; 
+    padding: 20px 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer img {
+    height: 55px;
+}
+
+.copyr {
+    font-size: 14px;
+}
+
+.footer p {
+    margin: 0;
+}

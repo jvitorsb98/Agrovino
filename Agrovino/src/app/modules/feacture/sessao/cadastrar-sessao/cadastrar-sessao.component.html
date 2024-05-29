@@ -1,0 +1,122 @@
+<div class="text-center pt-5">
+  <div class="title">
+    <h1>Cadastro de Sessão</h1>
+  </div>
+  <div>
+    <p>Aqui você pode cadastar sessões que envolvem atividades a serem realizadas com seus bovínos. A sessão vai envolver uma descrição do que será feito, a data e os animais envolvidos.
+    </p>
+    <p>Após a realização do cadastro, as sessões podem ser visualizadas na lista de sessões.</p>
+  </div>
+</div>
+<div class="container pb-5">
+  <form [formGroup]="formCadastro" (ngSubmit)="cadastrarSessao()" class="container custom-line">
+    <div class="row mx-auto">
+      <div class="col-6 sessao">
+        <div class="container">
+          <div class="row text-center">
+            <h2>Sessão</h2>
+          </div>
+          <div class="row mb-3">
+            <mat-form-field>
+              <mat-label>Descricao</mat-label>
+              <textarea matInput formControlName="descricao"></textarea>
+              <mat-error *ngIf="formCadastro.get('descricao')?.invalid">Descrição é obrigatória</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row mb-3">
+            <mat-form-field>
+              <mat-label>Data da sessão</mat-label>
+              <input matInput [min]="minDate" [matDatepicker]="picker1" formControlName="data"
+                placeholder="Data da sessão" />
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+              <mat-error *ngIf="formCadastro.get('data')?.invalid">Data de sessão é obrigatória</mat-error>
+            </mat-form-field>
+          </div>
+
+
+          <div class="row mb-3">
+            <label>Selecione Atividades:</label>
+            <select multiple [(ngModel)]="atividadesSelecionadas" [ngModelOptions]="{ standalone: true }">
+              <option *ngFor="let atividade of listaAtividades" [value]="atividade.id"
+                (click)="selectAtividade(atividade.id)">
+                {{ atividade.descricao }}
+              </option>
+            </select>
+          </div>
+          <div class="row mb-3">
+            <div *ngIf="formCadastro.get('atividades')?.hasError('selecaoInvalida')" class="text-danger">
+              Selecione ao menos uma atividade
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 suinos">
+        <div class="text-center">
+          <h2>Bovínos</h2>
+        </div>
+        <div class="filter-container d-flex">
+          <div class="d-flex align-items-center justify-content-center">
+            <div class="m-2 ">
+              <label for="filtro">Filtro</label>
+              <select id="filtro" [(ngModel)]="valorFiltro" required>
+                <option value="brinco">Brinco do Animal</option>
+                <option value="brinco_pai">Brinco do pai</option>
+                <option value="brinco_mae">Brinco da mãe</option>
+                <option value="dt_nasc">Data de nascimento</option>
+                <option value="sexo">Sexo</option>
+              </select>
+            </div>
+
+            <mat-form-field subscriptSizing="dynamic" *ngIf="valorFiltro == 'sexo'" class="m-2">
+              <mat-label>Sexo</mat-label>
+              <mat-select matNativeControl required [(ngModel)]="valorPesquisa">
+                <mat-option value="Macho">Masculino</mat-option>
+                <mat-option value="Feminino">Feminino</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field subscriptSizing="dynamic" class="m-2"
+              *ngIf="valorFiltro.slice(0, 4) == 'brin' || !valorFiltro">
+              <mat-label>Brinco</mat-label>
+              <input type="number" matInput placeholder="Valor" [(ngModel)]="valorPesquisa" />
+            </mat-form-field>
+
+            <mat-form-field subscriptSizing="dynamic" class="m-2" *ngIf="valorFiltro.slice(0, 4) == 'data'">
+              <mat-label>Data</mat-label>
+              <input matInput [matDatepicker]="picker" [(ngModel)]="valorPesquisa" />
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <div class="col-4 px-3">
+              <a mat-fab color="primary" aria-label="Pesquisar" (click)="filtrarListagem(valorFiltro)">
+                <mat-icon>search</mat-icon>
+              </a>
+              <button (click)="limparFiltro()" mat-mini-fab color="warn" aria-label="Limpar">
+                <mat-icon>clear</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="text-right">
+            <mat-checkbox (change)="checkAtividade($event.checked)">
+              Selecionar Todos
+            </mat-checkbox>
+          </div>
+        </div>
+        <div class="suinos-container container">
+          <section class="row">
+            <mat-checkbox class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4" *ngFor="let suino of suinosFiltrados"
+              formControlName="{{ suino.brinco }}">{{ suino.brinco }}</mat-checkbox>
+          </section>
+        </div>
+      </div>
+    </div>
+    <div class="row w-50 mt-3 mx-auto">
+      <button type="submit" class="btn btn-submit shadow-sm">Cadastrar Sessão </button>
+    </div>
+  </form>
+</div>

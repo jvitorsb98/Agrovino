@@ -1,0 +1,40 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card bg-color">
+        <div class="card-body shadow">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div *ngIf="!logginIn" class="mb-3">
+              <label  for="name" class="form-label">Nome Completo:</label>
+              <input type="text" class="form-control" id="name" name="name" formControlName="name">
+              <span class="error" *ngIf="form.get('name')?.invalid && form.get('name')?.touched">Nome inválido</span>
+            </div>
+            <div class="mb-3">
+              <label  for="email" class="form-label">Email:</label>
+              <input type="email" class="form-control" id="email" name="email" formControlName="email">
+              <span class="error" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">Email inválido</span>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Senha:</label>
+              <input type="password" class="form-control" id="password" name="password" formControlName="password">
+              <span class="error" *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
+                Minimo de 6 caracteres Maximo de 20 caracteres
+              </span>
+            </div>
+            <div *ngIf="!logginIn" class="mb-3">
+              <label for="confirmPassword" class="form-label">Confirmar senha:</label>
+              <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" formControlName="confirmPassword">
+              <span class="error" *ngIf="form.get('confirmPassword')?.invalid && form.get('confirmPassword')?.touched">Senha inválida</span>
+              <span class="error" *ngIf="form.get('confirmPassword')?.value != form.get('password')?.value && form.get('confirmPassword')?.touched && form.get('confirmPassword')?.valid">Senhas não conferem</span>
+            </div>
+            <div class="d-flex justify-content-center">
+              <button type="submit" class="btn btn-logreg shadow-sm">
+                {{ logginIn ? "Login" : "Sign up" }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

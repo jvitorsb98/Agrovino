@@ -1,0 +1,89 @@
+.container-class {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+.filtro {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filtro button {
+    margin-left: 10px;
+}
+
+.appointment-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 0 20px;
+}
+
+.appointment-card {
+    background-color: #5daa0094;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px;
+    width: 300px;
+    height: 200px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.appointment-card:hover {
+    background-color: rgba(145, 209, 67, 0.4);
+}
+
+.appointment-card h2 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #007bff;
+}
+
+.appointment-card span {
+    font-size: 16px;
+    color: #333;
+}
+
+.status {
+    font-weight: bold;
+    color: #28a745;
+}
+
+.late {
+    font-weight: bold;
+    color: #dc3545;
+}
+
+.btn-container {
+    margin-top: auto;
+}
+
+.btn-container button {
+    margin-right: 10px;
+}
+
+.realizado {
+    color: #28a745;
+}
+
+.agendado {
+    color: #007bff;
+}
+
+.btn-submit {
+    background-color: #6db318;
+    transition: color 0.3s ease, background-color 0.3s ease;
+  }
+  
+  .btn-submit:hover {
+    background-color: #507c1a;
+    cursor: pointer;
+  }

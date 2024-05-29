@@ -1,0 +1,65 @@
+<div class="row justify-content-center my-5">
+  <div class="text-center py-2">
+    <div class="title">
+      <h1>Listagem de Bovínos</h1>
+    </div>
+    <div>
+      <p>Aqui você pode verificar todos os bovínos cadastrados, tendo todas as informações necessárias.</p>
+      <p>Você também pode filtrar a sua pesquisa, e caso queira editar ou excluir algum dado, existem dois botões ao
+        lado de cada um dos animais.</p>
+    </div>
+  </div>
+  <label for="filter-criteria" class="col-xs-3 col-sm-auto col-form-label py-2">Filtrar por:</label>
+  <div class="col-xs-3 col-sm-auto shadow p-0 rounded">
+    <select id="filter-criteria" class="form-control" [(ngModel)]="campoSelecionado">
+      <option *ngFor="let campo of camposSuino" [ngValue]="campo">{{ campo }}</option>
+    </select>
+  </div>
+  <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Pesquisa :</label>
+  <div class="col-xs-3 col-sm-auto shadow p-0 rounded">
+    <input id="table-filtering-search" class="form-control" type="text" [formControl]="filter" />
+  </div>
+</div>
+
+<div class="container py-5">
+  <table class="table table-striped shadow-lg ">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Brinco</th>
+        <th scope="col">Brinco Pai</th>
+        <th scope="col">Brinco Mãe</th>
+        <th scope="col">Data Nascimento</th>
+        <th scope="col">Data Saída</th>
+        <th scope="col">Status</th>
+        <th scope="col">Sexo</th>
+        <th scope="col">Idade</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngIf="suinosFiltrados$ | async as suinosFiltrados; else noData">
+        <tr *ngFor="let suino of suinosFiltrados; let i = index">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ suino.brinco }}</td>
+          <td>{{ suino.brinco_pai }}</td>
+          <td>{{ suino.brinco_mae }}</td>
+          <td>{{ suino.dt_nasc }}</td>
+          <td>{{ suino.dt_saida }}</td>
+          <td>{{ suino.status }}</td>
+          <td>{{ suino.sexo }}</td>
+          <td>{{ suino.dt_nasc | idade: suino.dt_saida: suino.status }}</td>
+          <td>
+            <img src="../../../assets/editar.png" title="Editar" alt="Editar" (click)="onEditar(suino)">
+            <img src="../../../assets/lixeira.png" title="Excluir" alt="Excluir" (click)="onExcluir(suino)">
+          </td>
+        </tr>
+      </ng-container>
+      <ng-template #noData>
+        <tr>
+          <td colspan="8" style="text-align: center">Nenhum suíno encontrado</td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+</div>

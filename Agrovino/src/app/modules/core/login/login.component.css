@@ -1,0 +1,35 @@
+
+input.form-control:focus {
+    border-color: #4c8a00 !important;
+}
+
+.btn-logreg {
+    background-color: #457d00a0;
+    border: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-logreg:hover {
+    background-color: #2a4c00a0;
+}
+
+.error {
+    font-size: 12px;
+    color: red;
+}
+.card {
+    border-radius: 15px;
+}
+
+.card.shadow {
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 24px;
+    color: #333;
+}
+
+.bg-color {
+    background-color: #5eab00a0;
+}
