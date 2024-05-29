@@ -1,4 +1,4 @@
-export interface Suino {
+export interface Bovino {
   brinco: string | undefined;
   brinco_pai: string;
   brinco_mae: string;
