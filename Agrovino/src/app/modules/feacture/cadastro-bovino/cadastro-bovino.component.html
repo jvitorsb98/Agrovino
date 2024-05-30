@@ -1,4 +1,103 @@
-<div class="container text-center py-3">
+<div class="container">
+  <div class="form">
+    <form action="#">
+      <div class="form-header">
+        <div class="title">
+          <h1>Cadastro Bovino</h1>
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-box">
+          <label for="brinco">Brinco</label>
+          <input
+            type="text"
+            name="brinco"
+            placeholder="Informe o brinco do animal"
+            required
+          />
+        </div>
+        <div class="input-box">
+          <label for="brinco_pai">Brinco do pai</label>
+          <input
+            type="text"
+            name="brinco_pai"
+            placeholder="Informe o brinco do pai do animal"
+            required
+          />
+        </div>
+        <div class="input-box">
+          <label for="brinco_mae">Brinco da mãe</label>
+          <input
+            type="text"
+            name="brinco_mae"
+            placeholder="Informe o brinco da mãe do animal"
+            required
+          />
+        </div>
+        <div class="input-box">
+          <label for="dt_nasc">Data de nascimento</label>
+          <input
+            type="date"
+            name="dt_nasc"
+            placeholder="Informe a data de nascimento do animal"
+            required
+          />
+        </div>
+        <div class="input-box">
+          <label for="dt_saida">Data de saída</label>
+          <input
+            type="date"
+            name="dt_saida"
+            placeholder="Informe a data de saída do animal"
+            required
+          />
+        </div>
+
+        <div class="input-box">
+          <label>Status</label>
+          <select
+            class="box-option"
+            placeholder="Status do animal"
+            name="status"
+            formControlName="status"
+            [ngClass]="{
+              'class-invalid':
+                cadastro_bovino.get('status')?.invalid &&
+                cadastro_bovino.get('status')?.touched
+            }"
+          >
+            <option *ngFor="let item of lista_status" [value]="item">
+              {{ item }}
+            </option>
+          </select>
+        </div>
+
+        <div class="gender-input">
+          <div class="gender-title">
+            <h6>Sexo</h6>
+          </div>
+
+          <div class="gender-group">
+            <div class="gender-input">
+              <input type="radio" id="male" name="gender" />
+              <label for="male">Macho</label>
+            </div>
+            <div class="gender-input">
+              <input type="radio" id="female" name="gender" />
+              <label for="female">Fêmea</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="continue-button">
+        <button><a href="#">Continuar</a></button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- <div class="container text-center py-3">
   <div class="title">
     <h1>Cadastrar Bovíno</h1>
   </div>
@@ -62,4 +161,4 @@
     </mat-dialog-actions>
   </form>
 
-</div>
+</div> -->
