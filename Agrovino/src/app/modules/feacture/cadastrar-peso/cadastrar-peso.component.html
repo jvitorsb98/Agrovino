@@ -1,3 +1,55 @@
+<div class="container">
+  <div class="form">
+    <form action="#">
+      <div class="form-header">
+        <div class="title">
+          <h1>Cadastro de Peso Bovino</h1>
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-box">
+          <label for="animal">Brinco do animal</label>
+          <div class="dropdown bg-white">
+            <ng-multiselect-dropdown [placeholder]="'Selecione o animal'" [settings]="dropdownSettings" [data]="bovinos"
+              [ngStyle]="{ 'background-color': 'white', 'color': 'black' }" (onDeSelect)="onDeselect($event)"
+              (onSelect)="onItemSelect($event)"></ng-multiselect-dropdown>
+          </div>
+        </div>
+        <div class="input-box">
+          <label for="dt_pesagem">Data da pesagem</label>
+          <input
+            type="date"
+            name="dt_pesagem"
+            placeholder="Informe a data da pesagem do animal"
+            required
+          />
+        </div>
+        <div class="input-box">
+          <label for="peso">Peso</label>
+          <input
+            type="number"
+            name="peso"
+            placeholder="Informe o peso do animal"
+            required
+          />
+        </div>
+        
+      </div>
+
+      <div class="continue-button">
+        <button><a href="#">Continuar</a></button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+
+
+
+
+<!-- 
 <div class="container text-center py-3">
   <div class="title">
     <h1>Cadastrar Bovíno</h1>
@@ -35,4 +87,4 @@
 
   </mat-dialog-content>
 
-</div>
+</div> -->

@@ -21,17 +21,17 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'cadastro_bovino', component: CadastroBovinoComponent, canActivate: [AuthGuard] },
-  { path: 'cadastro_peso_bovino', component: CadastrarPesoComponent, canActivate: [AuthGuard] },
+  { path: 'cadastro_peso_bovino', component: CadastrarPesoComponent },
   { path: 'listagem_peso_bovino', component: ListagemBovinosComponent, canActivate: [AuthGuard] },
   { path: 'listagem_peso_bovino_grafico', component: PesagemBovinosComponent, canActivate: [AuthGuard] },
-  { path: 'cadastro_atividade', component: CadastrarAtividadeComponent, canActivate: [AuthGuard] },
-  { path: 'cadastro_sessao', component: CadastrarSessaoComponent, canActivate: [AuthGuard] },
+  { path: 'cadastro_atividade', component: CadastrarAtividadeComponent},
+  { path: 'cadastro_sessao', component: CadastrarSessaoComponent},
   { path: 'listagem_sessoes', component: ListarSecoesComponent , canActivate: [AuthGuard]},
   { path: 'sessao/finalizar/:id', component: FinalizarSecaoComponent, canActivate: [AuthGuard] },
   { path: 'historico/:id', component: HistoricoComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: LoginComponent },
-  { path: '**', redirectTo: '/login' }
+  { path: '**', redirectTo: '/cadastro_peso_bovino' }
 ];
 
 @NgModule({
