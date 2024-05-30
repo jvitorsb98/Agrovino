@@ -1,14 +1,38 @@
-<div class="text-center pt-5">
-  <div class="title">
-    <h1>Cadastro de Atividades para Sessão</h1>
+<div class="container">
+  <div class="text-center pt-5">
+    <div class="title">
+      <h1>Cadastro de Atividades para Sessão</h1>
+    </div>
+    <div>
+      <p>Aqui você pode cadastar uma atividade para que possa ser realizada com seus animais, como vacina, pesagem etc.
+      </p>
+      <p>Após a realização do cadastro, os dados para utiliza-lo estará no cadastro de sessão.</p>
+    </div>
   </div>
-  <div>
-    <p>Aqui você pode cadastar uma atividade para que possa ser realizada com seus animais, como vacina, pesagem etc.
-    </p>
-    <p>Após a realização do cadastro, os dados para utiliza-lo estará no cadastro de sessão.</p>
+  <div class="form">
+    <form action="#">
+      <div class="form-header">
+        <div class="title">
+          <h1>Cadastro de Atividade</h1>
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-box">
+          <label for="atividade">Atividade</label>
+          <input type="text" name="atividade" placeholder="Insira uma atividade..." required />
+        </div>
+      </div>
+
+      <div class="continue-button">
+        <button><a href="#">Continuar</a></button>
+      </div>
+    </form>
   </div>
 </div>
-<div class="container pb-5">
+
+
+
+<!-- <div class="container pb-5">
   <div class="form-container">
     <h1>Cadastrar Atividade</h1>
     <form [formGroup]="formularioAtividade" (ngSubmit)="onSubmit()" class="atividade-form">
@@ -20,4 +44,4 @@
       <button type="submit" class="btn btn-submit shadow-sm">Cadastrar Atividade </button>
     </form>
   </div>
-</div>
+</div> -->

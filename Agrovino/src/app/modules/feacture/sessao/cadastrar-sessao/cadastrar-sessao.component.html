@@ -1,3 +1,83 @@
+<div class="container">
+  <div class="text-center pt-5">
+    <div class="title">
+      <h1>Cadastro de Sessão</h1>
+    </div>
+    <div>
+      <p>Aqui você pode cadastar sessões que envolvem atividades a serem realizadas com seus bovínos. A sessão vai
+        envolver uma descrição do que será feito, a data e os animais envolvidos.
+      </p>
+      <p>Após a realização do cadastro, as sessões podem ser visualizadas na lista de sessões.</p>
+    </div>
+  </div>
+  <div class="content">
+    <div class="form">
+      <form action="#">
+        <div class="form-header">
+          <div class="title">
+            <h1>Cadastro de Peso Bovino</h1>
+          </div>
+        </div>
+        <div class="input-group">
+          <div class="input-box">
+            <label for="descricao">Descrição</label>
+            <textarea matInput formControlName="descricao"></textarea>
+          </div>
+          <div class="input-box">
+            <label for="dt_sessao">Data da sessão</label>
+            <input type="date" name="dt_sessao" placeholder="Informe a data da sessão" required />
+          </div>
+          <div class="input-box">
+            <label>Selecione Atividades:</label>
+            <select multiple [(ngModel)]="atividadesSelecionadas" [ngModelOptions]="{ standalone: true }">
+              <option *ngFor="let atividade of listaAtividades" [value]="atividade.id"
+                (click)="selectAtividade(atividade.id)">
+                {{ atividade.descricao }}
+              </option>
+            </select>
+          </div>
+        </div>
+    
+        <div class="continue-button">
+          <button><a href="#">Continuar</a></button>
+        </div>
+      </form>
+    </div>
+    
+    <div class="col-6 bovinos">
+      <div class="form-header">
+        <div class="title">
+          <h1>Bovínos</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="text-right">
+          <mat-checkbox (change)="checkAtividade($event.checked)">
+            Selecionar Todos
+          </mat-checkbox>
+        </div>
+      </div>
+      <div class="bovinos-container">
+        <section class="row">
+          <mat-checkbox class="col-12 col-sm-6 col-md-4" *ngFor="let bovino of bovinosFiltrados"
+            formControlName="{{ bovino.brinco }}">{{ bovino.brinco }}</mat-checkbox>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- 
+
+
 <div class="text-center pt-5">
   <div class="title">
     <h1>Cadastro de Sessão</h1>
@@ -75,4 +155,4 @@
       <button type="submit" class="btn btn-submit shadow-sm">Cadastrar Sessão </button>
     </div>
   </form>
-</div>
+</div> -->
